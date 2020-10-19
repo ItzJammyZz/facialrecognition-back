@@ -25,7 +25,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req, res)=> { res.send('success') });
+app.get('/', (req, res)=> { res.send('Heroku should now work!') });
 
 app.post('/signin', signin.handleSignin(db, bcrypt)); /* This is another way to shorter the repetitive lines you see below where you remove req,res */
 app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) }) 
