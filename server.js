@@ -1,8 +1,8 @@
-const express = require("express");
-const bodyParser = require('body-parser'); // latest version of exressJS now comes with Body-Parser!
-const bcrypt = require("bcrypt-nodejs");
-const cors = require("cors");
-const knex = require ('knex');
+import express, { json } from "express";
+import bodyParser from 'body-parser'; // latest version of exressJS now comes with Body-Parser!
+import bcrypt from "bcrypt-nodejs";
+import cors from "cors";
+import knex from 'knex';
 
 
 // const db = knex({
@@ -23,14 +23,14 @@ const db = knex({
 });
 
 Controllers
-const register = require('./controllers/register')
-const signin = require('./controllers/signin')
-const profile = require('./controllers/profile')
-const image = require('./controllers/image')
+import { handleRegister } from './controllers/register';
+import { handleSignin } from './controllers/signin';
+import { handleProfileGet } from './controllers/profile';
+import { handleImage, handleAPICall } from './controllers/image';
 
 
 const app = express();
-app.use(express.json());
+app.use(json());
 app.use(cors({
   origin: 'https://facialrecognitionfrontend.onrender.com', // Replace with your front-end URL
   methods: 'GET,POST,PUT,DELETE',
@@ -123,11 +123,11 @@ app.use(cors({
 
 app.get('/', (req, res)=> { res.send('IT ALIVE!') });
 
-app.post('/signin', signin.handleSignin(db, bcrypt)); 
-app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) }) 
-app.get("/profile/:id", (req, res) => { profile.handleProfileGet(req, res, db) });
-app.put('/image', (req, res) => { image.handleImage(req, res, db)});
-app.post('/imageurl', (req, res) => { image.handleAPICall(req, res)});
+app.post('/signin', handleSignin(db, bcrypt)); 
+app.post('/register', (req, res) => { handleRegister(req, res, db, bcrypt) }) 
+app.get("/profile/:id", (req, res) => { handleProfileGet(req, res, db) });
+app.put('/image', (req, res) => { handleImage(req, res, db)});
+app.post('/imageurl', (req, res) => { handleAPICall(req, res)});
 
 
 
