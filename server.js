@@ -23,9 +23,9 @@ const db = knex({
 });
 
 Controllers
-import { handleRegister } from './controllers/register';
-import { handleSignin } from './controllers/signin';
-import { handleProfileGet } from './controllers/profile';
+import handleRegister from './controllers/register';
+import handleSignin from './controllers/signin';
+import handleProfileGet from './controllers/profile';
 import { handleImage, handleAPICall } from './controllers/image';
 
 
