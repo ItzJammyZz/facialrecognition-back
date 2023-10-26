@@ -38,7 +38,4 @@ const  handleRegister = (req, res, db, bcrypt) => {
     // res.json(database.users[database.users.length - 1]);
   }
 
-  module.exports = {
-    handleRegister: handleRegister
-
-  }
+  export default handleRegister;
