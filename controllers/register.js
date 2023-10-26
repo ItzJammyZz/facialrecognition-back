@@ -1,8 +1,8 @@
 const  handleRegister = (req, res, db, bcrypt) => {
     const { email, name, password } = req.body;
     if (!email || !name || !password) {
-        return res.status(400).json('incorrect form submission');
-    } console.log()
+        return res.status(400).json('incorrect form submission'), console.log();
+    }
     const hash = bcrypt.hashSync(password);
     // database.users.push({
     //   id: "125",
@@ -35,8 +35,7 @@ const  handleRegister = (req, res, db, bcrypt) => {
       console.log()
     })
   
-    .catch(_err => res.status(400).json('Unable to register'))
-    console.log()
+    .catch(_err => res.status(400).json('Unable to register'), console.log())
     // res.json(database.users[database.users.length - 1]);
   }
 
