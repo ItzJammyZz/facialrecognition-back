@@ -32,4 +32,4 @@ const handleSignin = (db, bcrypt) => (req, res) => {
     }
 
 
-    export default handsigninleSignin;
+    export default handleSignin;
