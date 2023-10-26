@@ -1,10 +1,10 @@
 
-const Clarifai = require ('clarifai');
+// const Clarifai = require ('clarifai');
 
 
-const app = new Clarifai.App({
-    apiKey: '887893022f414e7da0d611e0e0d5eaf4'
-  });
+// const app = new Clarifai.App({
+//     apiKey: '887893022f414e7da0d611e0e0d5eaf4'
+//   });
 
   const handleAPICall = (req, res) => {
   app.models
@@ -39,9 +39,9 @@ const handleImage = (req, res, db) => {
     // }
   }
 
-  // module.exports = {
-  //     handleImage,
-  //     handleAPICall
-  // }
+  export {
+      handleImage,
+      handleAPICall
+  }
 
-  export default handleImage/handleAPICall
+  // export default handleImage & handleAPICall
