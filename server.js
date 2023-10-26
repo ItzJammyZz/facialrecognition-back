@@ -23,10 +23,10 @@ const db = knex({
 });
 
 // Controllers
-import handleRegister from './controllers/register';
-import handleSignin from './controllers/signin';
-import handleProfileGet from './controllers/profile';
-import { handleImage, handleAPICall } from './controllers/image';
+import handleRegister from './controllers/register.js';
+import handleSignin from './controllers/signin.js';
+import handleProfileGet from './controllers/profile.js';
+import { handleImage, handleAPICall } from './controllers/image.js';
 
 
 const app = express();
