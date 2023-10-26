@@ -36,6 +36,7 @@ const  handleRegister = (req, res, db, bcrypt) => {
     })
   
     .catch(_err => res.status(400).json('Unable to register'))
+    console.log()
     // res.json(database.users[database.users.length - 1]);
   }
 
