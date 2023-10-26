@@ -39,7 +39,9 @@ const handleImage = (req, res, db) => {
     // }
   }
 
-  module.exports = {
-      handleImage,
-      handleAPICall
-  }
+  // module.exports = {
+  //     handleImage,
+  //     handleAPICall
+  // }
+
+  export default handleImage/handleAPICall
