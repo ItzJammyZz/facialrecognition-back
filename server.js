@@ -29,15 +29,17 @@ import handleProfileGet from './controllers/profile.js';
 import { handleImage, handleAPICall } from './controllers/image.js';
 
 
+// const app = express();
+// app.use(bodyParser.json());
+// app.use(cors({
+//   origin: 'https://facialrecognitionfrontend.onrender.com', 
+//   methods: 'GET,POST,PUT,DELETE',
+//   credentials: true, 
+// }));
+
 const app = express();
 app.use(bodyParser.json());
-app.use(cors({
-  origin: 'https://facialrecognitionfrontend.onrender.com', // Replace with your front-end URL
-  methods: 'GET,POST,PUT,DELETE',
-  credentials: true, // If you need to include cookies
-}));
-
-
+app.use(cors());
 
 // app.post('/signin', (req, res) => {
 //   db.select('email', 'hash').from('login')
@@ -121,15 +123,28 @@ app.use(cors({
 
 
 
-app.get('/', (req, res)=> { res.send('IT ALIVE!') });
+app.get('/', (req, res)=> { res.send('Brainnnn!') });
 
-app.post('/signin', handleSignin(db, bcrypt)); 
-app.post('/register', (req, res) => { handleRegister(req, res, db, bcrypt) }) 
-app.get("/profile/:id", (req, res) => { handleProfileGet(req, res, db) });
-app.put('/image', (req, res) => { handleImage(req, res, db)});
-app.post('/imageurl', (req, res) => { handleAPICall(req, res)});
+// app.post('/signin', handleSignin(db, bcrypt)); 
+// app.post('/register', (req, res) => { handleRegister(req, res, db, bcrypt) }) 
+// app.get("/profile/:id", (req, res) => { handleProfileGet(req, res, db) });
+// app.put('/image', (req, res) => { handleImage(req, res, db)});
+// app.post('/imageurl', (req, res) => { handleAPICall(req, res)});
 
+//SIGNIN (post, pw over HTTP body)
+app.post('/signin', (req, res) => { signin.handleSignIn(req, res, db, bcrypt) });
 
+//REGISTER (post, add to database)
+app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) });
+
+//PROFILE (get user)
+app.get('/profile/:id', (req, res, db) => { profile.handleProfileGet(req, res, db) });
+
+//IMAGE (put, update count on user profile)
+app.put('/image', (req, res) => { image.handleImage(req, res, db) });
+
+//IMAGEURL (post, handle Face Recognition API from backend)
+app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) });
 
 app.listen(3000, () => {
   console.log("app is running on port 3001");
