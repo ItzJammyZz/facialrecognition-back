@@ -1,4 +1,4 @@
-import express, { json } from "express";
+import express from "express";
 import bodyParser from 'body-parser'; // latest version of exressJS now comes with Body-Parser!
 import bcrypt from "bcrypt-nodejs";
 import cors from "cors";
@@ -22,7 +22,7 @@ const db = knex({
   }
 });
 
-Controllers
+// Controllers
 import handleRegister from './controllers/register';
 import handleSignin from './controllers/signin';
 import handleProfileGet from './controllers/profile';
@@ -30,7 +30,7 @@ import { handleImage, handleAPICall } from './controllers/image';
 
 
 const app = express();
-app.use(json());
+app.use(bodyParser.json());
 app.use(cors({
   origin: 'https://facialrecognitionfrontend.onrender.com', // Replace with your front-end URL
   methods: 'GET,POST,PUT,DELETE',
