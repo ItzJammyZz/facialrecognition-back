@@ -3,6 +3,8 @@ import bodyParser from 'body-parser'; // latest version of exressJS now comes wi
 import bcrypt from "bcrypt-nodejs";
 import cors from "cors";
 import knex from 'knex';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const db = knex({ 
   client: 'pg',
@@ -120,7 +122,7 @@ app.use(cors());
 
 
 
-app.get('/', (req, res)=> { res.send('Brainnnn!') });
+// app.get('/', (req, res)=> { res.send('Brainnnn!') });
 
 app.post('/signin', handleSignin(db, bcrypt)); 
 app.post('/register', (req, res) => { handleRegister(req, res, db, bcrypt) }) 
