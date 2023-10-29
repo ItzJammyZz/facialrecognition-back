@@ -28,16 +28,22 @@ const  handleRegister = (req, res, db, bcrypt) => {
         joined: new Date()
       })
       .then(user => {
-        console.log("User registered successfully:", user[0]);
-       res.json(user[0]);
+        console.log('Error during user insert:', err); 
+      //  res.json(user[0]);
+      res.status(400).json('Unable to register');
          })
       })
       .then(trx.commit)
-      .catch(trx.rollback)
+      // .catch(trx.rollback)
+      .catch(err => {
+        console.log('Error during transaction:', err); // Log the error
+        trx.rollback(); // Rollback the transaction
+        res.status(400).json('Unable to register');
+      });
     })
   
     .catch(err => {
-      console.log("Error during registration:", err);
+      console.log("Error during transaction start:", err);
       res.status(400).json({error: 'Unable to register'});
   });
   }
