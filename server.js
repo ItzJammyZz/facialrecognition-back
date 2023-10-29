@@ -4,31 +4,20 @@ import bcrypt from "bcrypt-nodejs";
 import cors from "cors";
 import knex from 'knex';
 
-// const db = knex({ 
-//   client: 'pg',
-//   connection: {
-//     connectionString : process.env.DATABASE_URL,
-//     ssl: {rejectUnauthorized: false},
-//     host: process.env.DATABASE_HOST,
-//     port: 5432,
-//     user: process.env.DATABASE_USER,
-//     password: process.env.DATABASE_PW,
-//     database: process.env.DATABASE_DB
-//   }
-// });
-
 const db = knex({ 
   client: 'pg',
   connection: {
-    connectionString : 'postgres://smartbrainbackend_user:FoqzYqLkmm6l1lDyPca4chQqsZuZELxp@dpg-ckqkgg01hnes73a7tmm0-a.frankfurt-postgres.render.com/smartbrainbackend',
+    connectionString : process.env.DATABASE_URL,
     ssl: {rejectUnauthorized: false},
-    host: 'dpg-ckqkgg01hnes73a7tmm0-a',
+    host: process.env.DATABASE_HOST,
     port: 5432,
-    user: 'smartbrainbackend_user',
-    password: 'FoqzYqLkmm6l1lDyPca4chQqsZuZELxp',
-    database: 'smartbrainbackend'
+    user: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PW,
+    database: process.env.DATABASE_DB
   }
 });
+
+
 
 // Controllers
 import handleRegister from './controllers/register.js';
