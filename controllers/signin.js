@@ -30,7 +30,7 @@ const handleSignin = (db, bcrypt) => (req, res) => {
   // const handleSignin = (req, res, db, bcrypt) => {  
   const { email, password } = req.body;
   if (!email || !password) {
-    return res.status(400).json({ error: 'Incorrect form submission' });
+    return res.status(400).json({ error: 'Incorrect form submission', _err });
   }
 
   db.select('email', 'hash').from('login')
@@ -44,12 +44,12 @@ const handleSignin = (db, bcrypt) => (req, res) => {
           .then(user => {
             res.json(user[0]);
           })
-          .catch(_err => res.status(400).json({ error: 'Unable to retrieve user' }));
+          .catch(_err => res.status(400).json({ error: 'Unable to retrieve user', _err}));
       } else {
-        res.status(400).json({ error: 'Wrong credentials' });
+        res.status(400).json({ error: 'Wrong credentials', _err });
       }
     })
-    .catch(_err => res.status(400).json({ error: 'Wrong credentials' }));
+    .catch(_err => res.status(400).json({ error: 'Wrong credentials', _err }));
 };
 
 export default handleSignin;
