@@ -3,8 +3,8 @@ import bodyParser from 'body-parser'; // latest version of exressJS now comes wi
 import bcrypt from "bcrypt-nodejs";
 import cors from "cors";
 import knex from 'knex';
-import dotenv from 'dotenv';
-dotenv.config();
+// import dotenv from 'dotenv';
+// dotenv.config();
 
 const db = knex({ 
   client: 'pg',
@@ -130,8 +130,11 @@ app.get("/profile/:id", (req, res) => { handleProfileGet(req, res, db) });
 app.put('/image', (req, res) => { handleImage(req, res, db)});
 app.post('/imageurl', (req, res) => { handleAPICall(req, res)});
 
-app.listen(3000, () => {
-  console.log("app is running on port 3001");
-});
+// app.listen(3000, () => {
+//   console.log("app is running on port 3001");
+// });
 
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`App is running on port ${process.env.PORT}`);
+})
 
