@@ -6,11 +6,17 @@ import knex from 'knex';
 // import dotenv from 'dotenv';
 // dotenv.config();
 
+// Controllers
+import handleRegister from './controllers/register.js';
+import handleSignin from './controllers/signin.js';
+import handleProfileGet from './controllers/profile.js';
+import { handleImage, handleAPICall } from './controllers/image.js';
+
 const db = knex({ 
   client: 'pg',
   connection: {
     connectionString : process.env.DATABASE_URL,
-    ssl: {rejectUnauthorized: false},
+    // ssl: {rejectUnauthorized: false},
     host: process.env.DATABASE_HOST,
     port: 5432,
     user: process.env.DATABASE_USER,
@@ -19,13 +25,6 @@ const db = knex({
   }
 });
 
-
-
-// Controllers
-import handleRegister from './controllers/register.js';
-import handleSignin from './controllers/signin.js';
-import handleProfileGet from './controllers/profile.js';
-import { handleImage, handleAPICall } from './controllers/image.js';
 
 
 // const app = express();
@@ -122,9 +121,9 @@ app.use(cors());
 
 
 
-// app.get('/', (req, res)=> { res.send('Brainnnn!') });
+app.get('/', (req, res)=> { res.send('Brainnnn!') });
 
-app.post('/signin', handleSignin(db, bcrypt)); 
+app.post('/signin', (req, res) => handleSignin(req, res, db, bcrypt)); 
 app.post('/register', (req, res) => { handleRegister(req, res, db, bcrypt) }) 
 app.get("/profile/:id", (req, res) => { handleProfileGet(req, res, db) });
 app.put('/image', (req, res) => { handleImage(req, res, db)});
